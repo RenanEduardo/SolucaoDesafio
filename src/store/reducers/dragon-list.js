@@ -1,29 +1,37 @@
 import * as actionTypes from "../actions/actionTypes";
+import {updateObject} from '../../shared/utility';
 
 const initialState = {
   dragons: [],
-  error: null
+  error: null,
+  loading: false
 };
 
 const getDragonsList = (state, action) => {
-  return {
-    dragons: state.dragonsList,
+  return updateObject(state,{
+    dragons: action.dragonsList,
     loading: true
-  }
+  })
 };
 
 const getDragonsListSuccess = (state, action) => {
-  return {
-    list: state.dragonsList,
+  return updateObject(state,{
+    dragons: action.dragonsList,
     loading: false
-  }
+  })
 };
 const getDragonsListFail = (state, action) => {
-  return {
-    error: state.error,
+  return updateObject(state,{
+    error: action.error,
     loading: false
-  }
+  })
 };
+
+const sortDragonList = (state, action) => {
+  return updateObject(state, {
+    dragons: action.sortedDragonsList  
+  })
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -33,6 +41,8 @@ const reducer = (state = initialState, action) => {
       return getDragonsListFail(state, action);
     case actionTypes.GET_DRAGONS_LIST_SUCCESS:
       return getDragonsListSuccess(state, action);
+    case actionTypes.SORT_DRAGON_LIST:
+      return sortDragonList(state, action);
     default:
       return state;
   }

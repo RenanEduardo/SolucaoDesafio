@@ -20,4 +20,21 @@ input, button {
 .Login button {
     background: #c441b7;
     color: #fff;
+    cursor: pointer;
+}
+
+.Login button:hover {
+    background: #fff;
+    color: #c441b7;
+}
+
+.Logo {
+    color: #c441b7;
+    margin-bottom: 20px; 
+}
+
+.loginButtons { 
+    display: flex;
+    flex-direction: column;
+   
 }
